@@ -1,5 +1,6 @@
 package co.bases.datos.proyectofinaldatabase.services;
 
+import co.bases.datos.proyectofinaldatabase.dao.UserDAO;
 import co.bases.datos.proyectofinaldatabase.dtos.LoginDTO;
 import co.bases.datos.proyectofinaldatabase.dtos.RegisterDTO;
 import co.bases.datos.proyectofinaldatabase.dtos.UserDTO;
@@ -17,19 +18,19 @@ public class SystemUserService {
 
     private final UserDAO userDAO = UserDAO();
 
-    public UserDTO login (LoginDTO loginDTO)throws Exception{
+    public UserDTO login(LoginDTO loginDTO) throws Exception {
 
-        if(loginDTO.userName() == null || loginDTO.userName().isEmpty()){
+        if (loginDTO.userName() == null || loginDTO.userName().isEmpty()) {
             throw new Exception("El usuario no puede estar vacio");
         }
-        if(loginDTO.password()==null || loginDTO.password().isBlank()){
+        if (loginDTO.password() == null || loginDTO.password().isBlank()) {
             throw new Exception("El usuario no puede estar vacio");
         }
         SystemUser user = userDAO.findByUserName(loginDTO.userName());
-        if(user==null){
+        if (user == null) {
             throw new Exception("El usuario no existe");
         }
-        if(!user.getPassword().equals(loginDTO.password())){
+        if (!user.getPassword().equals(loginDTO.password())) {
         }
         return new UserDTO(
                 user.getCedula(),
@@ -39,11 +40,12 @@ public class SystemUserService {
         );
     }
 
-    public UserDTO register (RegisterDTO dto) throws Exception{
-        if(userExistente!=null){
+    public UserDTO register(RegisterDTO dto) throws Exception {
+        UserDTO userExistente = userDAO.findByUserName(dto.userName());
+        if (userExistente != null) {
             throw new Exception("El nombre de usuario ya existe");
         }
-        SystemUser nuevo =  SystemUser.builder()
+        SystemUser nuevo = SystemUser.builder()
                 .cedula(dto.cedula())
                 .userName(dto.userName())
                 .password(dto.password())
@@ -51,5 +53,6 @@ public class SystemUserService {
                 .role(dto.role())
                 .build();
         return new UserDTO(nuevo.getCedula(), nuevo.getUserName(), nuevo.getFullName()
-                ,nuevo.getRole());
+                , nuevo.getRole());
     }
+}
