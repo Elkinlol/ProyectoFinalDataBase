@@ -7,4 +7,7 @@ module co.bases.datos.proyectofinaldatabase {
 
     opens co.bases.datos.proyectofinaldatabase to javafx.fxml;
     exports co.bases.datos.proyectofinaldatabase;
+
+    opens co.bases.datos.proyectofinaldatabase.controllers to javafx.fxml;
+    exports co.bases.datos.proyectofinaldatabase.controllers;
 }
