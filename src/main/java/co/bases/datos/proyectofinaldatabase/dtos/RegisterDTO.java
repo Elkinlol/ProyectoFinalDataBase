@@ -12,8 +12,10 @@ public record RegisterDTO( String cedula ,String userName, String fullName, Role
 
         if (cedula == null || cedula.isBlank())
             throw new IllegalArgumentException("El cedula es obligatoria");
+
         if (role == null)
             throw new IllegalArgumentException("El role es obligatoria");
+
         if (fullName == null || fullName.isBlank())
             throw new IllegalArgumentException("El fullname es obligatoria");
     }

@@ -2,6 +2,9 @@ package co.bases.datos.proyectofinaldatabase.controllers;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import co.bases.datos.proyectofinaldatabase.dtos.LoginDTO;
+import co.bases.datos.proyectofinaldatabase.services.SystemUserService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -9,8 +12,12 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import lombok.Builder;
 
+@Builder
 public class LoginController{
+
+    private SystemUserService systemUserService;
 
     @FXML
     private ResourceBundle resources;
@@ -36,7 +43,9 @@ public class LoginController{
     }
 
     @FXML
-    void login_btn(ActionEvent event) {
+    void login_btn(ActionEvent event) throws Exception {
+        LoginDTO loginDTO= new LoginDTO(txt_username.getText(), txt_password.getText());
+        systemUserService.login(loginDTO);
 
     }
 
