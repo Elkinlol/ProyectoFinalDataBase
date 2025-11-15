@@ -4,6 +4,7 @@ module co.bases.datos.proyectofinaldatabase {
     requires static lombok;
     requires javafx.graphics;
     requires javafx.base;
+    requires java.sql;
 
     opens co.bases.datos.proyectofinaldatabase to javafx.fxml;
     exports co.bases.datos.proyectofinaldatabase;

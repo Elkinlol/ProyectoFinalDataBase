@@ -4,6 +4,7 @@ import co.bases.datos.proyectofinaldatabase.dao.UserDAO;
 import co.bases.datos.proyectofinaldatabase.dtos.LoginDTO;
 import co.bases.datos.proyectofinaldatabase.dtos.RegisterDTO;
 import co.bases.datos.proyectofinaldatabase.dtos.UserDTO;
+import co.bases.datos.proyectofinaldatabase.model.Role;
 import co.bases.datos.proyectofinaldatabase.model.SystemUser;
 import lombok.Builder;
 import lombok.Getter;
@@ -16,17 +17,18 @@ import lombok.ToString;
 
 public class SystemUserService {
 
-    private final UserDAO userDAO = UserDAO();
+    protected UserDAO userDAO;
 
     public UserDTO login(LoginDTO loginDTO) throws Exception {
-
+    /*
         if (loginDTO.userName() == null || loginDTO.userName().isEmpty()) {
             throw new Exception("El usuario no puede estar vacio");
         }
         if (loginDTO.password() == null || loginDTO.password().isBlank()) {
             throw new Exception("El usuario no puede estar vacio");
         }
-        SystemUser user = userDAO.findByUserName(loginDTO.userName());
+
+        UserDTO user = userDAO.findByUserName(loginDTO.userName());
         if (user == null) {
             throw new Exception("El usuario no existe");
         }
@@ -37,7 +39,10 @@ public class SystemUserService {
                 user.getUserName(),
                 user.getFullName(),
                 user.getRole()
-        );
+        );*/
+        //Modificar al finalizar la implementacion de la BD
+        Role role = new Role("User", 2);
+        return new UserDTO("","","",role);
     }
 
     public UserDTO register(RegisterDTO dto) throws Exception {
