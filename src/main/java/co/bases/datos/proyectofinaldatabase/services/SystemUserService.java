@@ -4,8 +4,7 @@ import co.bases.datos.proyectofinaldatabase.dao.UserDAO;
 import co.bases.datos.proyectofinaldatabase.dtos.LoginDTO;
 import co.bases.datos.proyectofinaldatabase.dtos.RegisterDTO;
 import co.bases.datos.proyectofinaldatabase.dtos.UserDTO;
-import co.bases.datos.proyectofinaldatabase.model.Role;
-import co.bases.datos.proyectofinaldatabase.model.SystemUser;
+import co.bases.datos.proyectofinaldatabase.model.UserRole;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
@@ -41,23 +40,23 @@ public class SystemUserService {
                 user.getRole()
         );*/
         //Modificar al finalizar la implementacion de la BD
-        Role role = new Role("User", 2);
-        return new UserDTO("","","",role);
+        UserRole role = UserRole.CUSTOMER;
+        return new UserDTO("","",0,"","",role);
     }
 
     public UserDTO register(RegisterDTO dto) throws Exception {
-        UserDTO userExistente = userDAO.findByUserName(dto.userName());
+        UserDTO userExistente = userDAO.findByEmail(dto.getEmail());
         if (userExistente != null) {
             throw new Exception("El nombre de usuario ya existe");
         }
-        SystemUser nuevo = SystemUser.builder()
-                .cedula(dto.cedula())
-                .userName(dto.userName())
-                .password(dto.password())
-                .fullName(dto.fullName())
-                .role(dto.role())
+        UserDTO nuevo = UserDTO.builder()
+                .cedula(dto.getCedula())
+                .email(dto.getEmail())
+                .password(dto.getPassword())
+                .fullName(dto.getFullName())
+                .role(dto.getRole())
                 .build();
-        return new UserDTO(nuevo.getCedula(), nuevo.getUserName(), nuevo.getFullName()
-                , nuevo.getRole());
+
+        return nuevo;
     }
 }

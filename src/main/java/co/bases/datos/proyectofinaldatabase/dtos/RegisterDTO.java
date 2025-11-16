@@ -18,7 +18,16 @@ public class RegisterDTO{
 
 
     public RegisterDTO (String email, String password, String cedula, UserRole role, String fullName) {
+        this.email = email;
+        this.password = password;
+        this.cedula = cedula;
+        this.role = role;
+        this.fullName = fullName;
 
+        validate();
+    }
+
+    public void validate (){
         if (email == null || email.isBlank())
             throw new IllegalArgumentException("El email es obligatorio");
 
