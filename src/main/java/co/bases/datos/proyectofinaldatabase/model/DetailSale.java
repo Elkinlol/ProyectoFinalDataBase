@@ -1,22 +1,22 @@
 package co.bases.datos.proyectofinaldatabase.model;
 
+import java.util.List;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
-
-import java.time.LocalDate;
 
 @Setter
 @Getter
 @AllArgsConstructor
 @Builder
 
-public class Installment {
+public class DetailSale {
 
     private String id;
-    private int  installmentCount;
-    private float installmentValue;
-    private LocalDate installmentDate;
-    private CreditPayment creditPayment;
+    private int quantity;
+    private float totalPrice;
+    private List<Product> products;
+    private Sale sale;
 }

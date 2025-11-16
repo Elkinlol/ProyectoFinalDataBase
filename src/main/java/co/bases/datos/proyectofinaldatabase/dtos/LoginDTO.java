@@ -1,10 +1,21 @@
 package co.bases.datos.proyectofinaldatabase.dtos;
 
-public record LoginDTO(String userName, String password) {
+import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
 
-    public LoginDTO {
-        if (userName == null || userName.isBlank())
-            throw new IllegalArgumentException("El usuario es obligatorio");
+@Getter
+@Setter
+@Builder
+
+public class LoginDTO {
+
+    private String email;
+    private String password;
+
+    public LoginDTO (String email, String password){
+        if (email == null || email.isBlank())
+            throw new IllegalArgumentException("El correo electronico es obligatorio");
 
         if (password == null || password.isBlank())
             throw new IllegalArgumentException("La contraseña es obligatoria");

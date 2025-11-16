@@ -1,8 +1,19 @@
 package co.bases.datos.proyectofinaldatabase.dtos;
 
-public record ProductCategoryDTO(String categoryName,double iva, double profitMargin) {
+import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
 
-    public ProductCategoryDTO{
+@Setter
+@Getter
+@Builder
+
+public class ProductCategoryDTO {
+    private String categoryName;
+    private double iva;
+    private double profitMargin;
+
+    public ProductCategoryDTO(String categoryName, double iva, double profitMargin) {
         if(categoryName == null || categoryName.isBlank())
             throw new IllegalArgumentException("El usuario es obligatorio");
 

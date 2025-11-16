@@ -8,12 +8,13 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class SystemUser {
+public class User {
 
     private String cedula;
-    private String userName;
+    private int age;
     private String password;
+    private String email;
     private String fullName;
-    private Role role;
+    private UserRole role;
 
 }

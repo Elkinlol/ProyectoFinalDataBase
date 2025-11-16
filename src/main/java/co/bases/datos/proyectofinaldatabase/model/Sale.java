@@ -10,10 +10,11 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Sale {
+
     private String id;
     private LocalDate saleDate;
-    private SystemUser user;
-    private List<Product> products;
-    private List<PayMent> pago;
+    private User customer;
+    private User employee;
+    private List<Payment> payments;
 }
 

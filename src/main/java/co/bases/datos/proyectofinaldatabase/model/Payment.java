@@ -8,9 +8,9 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 
-public class PayMent {
+public abstract class Payment {
 
-    private  String payMentId;
+    private  String id;
     private  float totalPrice;
     private  boolean isCredit;
 
